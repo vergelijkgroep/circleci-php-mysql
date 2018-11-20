@@ -3,7 +3,7 @@ FROM circleci/php:7.2-cli
 # Install PHP extensions:
 RUN sudo apt-get update \
     && sudo apt-get install -y libicu-dev g++ \
-    && -E sudo docker-php-ext-install pdo_mysql \
+    && sudo -E docker-php-ext-install pdo_mysql \
     && sudo docker-php-ext-install intl \
     && sudo apt-get clean
 
