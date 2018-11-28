@@ -2,9 +2,12 @@ FROM circleci/php:7.0-cli
 
 # Install PHP extensions:
 RUN sudo apt-get update \
-    && sudo apt-get install -y libicu-dev g++ \
+    && sudo apt-get install -y libicu-dev g++ libc-client-dev libkrb5-dev libxml2-dev \
     && sudo -E docker-php-ext-install pdo_mysql \
-    && sudo docker-php-ext-install intl \
+    && sudo -E docker-php-ext-install intl \
+    && sudo -E docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    && sudo -E docker-php-ext-install imap \
+    && sudo -E docker-php-ext-install soap \
     && sudo apt-get clean
 
 # Install Dockerize:
