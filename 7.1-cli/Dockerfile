@@ -2,7 +2,8 @@ FROM circleci/php:7.1-cli
 
 # Install PHP extensions:
 RUN sudo apt-get update \
-    && sudo apt-get install -y libicu-dev g++ libc-client-dev libkrb5-dev libxml2-dev \
+    && sudo apt-get install -y libicu-dev g++ libc-client-dev libkrb5-dev libxml2-dev libpng-dev \
+    && sudo -E docker-php-ext-install gd \
     && sudo -E docker-php-ext-install pdo_mysql \
     && sudo -E docker-php-ext-install intl \
     && sudo -E docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
